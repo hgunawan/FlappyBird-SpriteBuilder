@@ -30,6 +30,18 @@
         // Then reset the timer.
         timeSinceObstacle = 0.0f;
     }
+    
+    for(CCNode *bush in _bushes){
+        // move the bush
+        bush.position = ccp(bush.position.x - (character.physicsBody.velocity.x * delta), bush.position.y);
+        
+        // if the left corner is one complete width off the screen,
+        // move it to the right
+        if (bush.position.x <= (-1 * bush.contentSize.width)) {
+            bush.position = ccp(bush.position.x +
+                                2 * bush.contentSize.width, bush.position.y);
+        }
+    }
 }
 
 // put new methods here
